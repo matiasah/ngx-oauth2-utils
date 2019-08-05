@@ -1,9 +1,25 @@
 {
   "name": "ngx-oauth2-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "descripcion": "A small OAuth2 service that serves as a utility tool to generate access token from multiple OAuth2 providers",
   "author": "Matías Hermosilla",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matiasah/ngx-oauth2-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matiasah/ngx-oauth2-utils/issues"
+  },
+  "homepage": "https://github.com/matiasah/ngx-oauth2-utils",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "oauth2",
+    "utils",
+    "ngx"
+  ],
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0"
