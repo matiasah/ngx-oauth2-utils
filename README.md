@@ -16,30 +16,38 @@ import { OAuth2ProviderFor } from 'ngx-oauth2-utils';
 
 Define the following provider in your module's NgModule declaration.
 ```ts
+import { OAUTH2_PROVIDERS, OAuth2Provider } from 'ngx-oauth2-utils';
+
+const oauth2Providers: OAuth2Provider[] = [
+  {
+    name: 'Google',
+    authorizationUri: 'https://accounts.google.com/o/oauth2/v2/auth',
+    clientId: '',
+    scope: 'email profile',
+    authorizationParams: {
+      prompt: 'consent',
+      access_type: 'online'
+    }
+  },
+  {
+    name: 'Facebook',
+    authorizationUri: 'https://www.facebook.com/v4.0/dialog/oauth',
+    clientId: '',
+    scope: 'public_profile email'
+  }
+];
+
+@NgModule({
     ...
     providers: [
-        OAuth2ProviderFor([
-            {
-                name: 'Google',
-                accessTokenUri: 'https://github.com/login/oauth/access_token',
-                authorizationUri: 'https://accounts.google.com/o/oauth2/v2/auth',
-                clientId: '',
-                scope: 'email profile',
-                authorizationParams: {
-                prompt: 'consent',
-                access_type: 'online'
-                }
-            },
-            {
-                name: 'Facebook',
-                accessTokenUri: 'https://graph.facebook.com/v4.0/oauth/access_token',
-                authorizationUri: 'https://www.facebook.com/v4.0/dialog/oauth',
-                clientId: '',
-                scope: 'public_profile email'
-            }
-        ])
+        {
+            provide: OAUTH2_PROVIDERS,
+            useValue: oauth2Providers
+        }
     ],
     ...
+})
+export class AppModule { }
 ```
 
 Inject the ```OAuth2Service``` into your components.
@@ -65,7 +73,7 @@ export class AppComponent {
         this.oauth2Service.getSignInAuthentication().subscribe(
             authentication => {
 
-                // Authentication found, set the current authentication to the one received
+                // Authentication found, store authentication in localStorage
                 this.oauth2Service.setAuthentication(authentication);
             }
         );

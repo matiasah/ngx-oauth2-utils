@@ -1,5 +1,4 @@
 export interface OAuth2Provider {
-    accessTokenUri: string;
     authorizationUri: string;
     name: string;
     clientId: string;
